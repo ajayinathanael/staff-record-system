@@ -1,0 +1,51 @@
+<%- include ("partials/header") %>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3">
+    <div class="container">
+        
+        <a href="#" class="navbar-brand">
+            <img src="/images/images.png" width="30" height="30" class="d-inline-block align-top" alt="">
+            Staff Record Project
+        </a>
+
+    </div>
+</nav>
+
+
+<div class="container">
+    <button class="btn mt-5 shadow-lg"> <a style="text-decoration: none; color: black;" href="/">Back</a> </button>
+
+    <div class="mt-4">
+        <img class="img-fluid mb-3 w-50" src="../uploads/<%= staff.photo %>" alt="">
+    </div>
+
+
+        <div class="mt-5 col-lg-8 col-sm-8 shadow p-4">
+            <div class="row">
+                
+                        <h3 class="card-title mb-3"> <%= staff.lastname%> <%=staff.firstname%> </h3>
+                        <i><%=staff.address%></i>
+                        <p><%=staff.department%></p>
+                        <p><%=staff.dob%></p>
+                        <p><%=staff.courses%></p>
+                        <p><%=staff.whatsapp%></p>
+                        
+            </div>
+        </div>
+
+    <!-- <div class="mt-5"> -->
+        <div class="mt-5 col-lg-8 col-sm-8 shadow p-4">
+            <div class="row">
+                <p><%=staff.comment%></p>
+            </div>
+        </div>
+    <!-- </div> -->
+
+    <div class="mt-3 noPrint">
+        <button class="btn btn-info" onclick="window.print()">Print Patient Details</button>
+    </div>
+
+</div>
+
+<%- include ("partials/footer") %>

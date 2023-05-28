@@ -1,0 +1,73 @@
+<%- include('partials/header') %>
+<link rel="stylesheet" href="./../css/myIndex.css">
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3">
+    <div class="container">
+        
+        <a href="#" class="navbar-brand">
+            <img src="images/images.png" width="30" height="30" class="d-inline-block align-top" alt="">
+            Staff Record Project
+        </a>
+
+    </div>
+</nav>
+ 
+
+<!-- Section -->
+<section data-mdb-animation-start="onHover" data-mdb-toggle="animation" data-mdb-animation-reset="true" data-mdb-animation="fade-in">
+    <div class="container pt-5" >
+
+        <% if(staff.length<1){ %>
+        <div class="mb-2">
+            <p class="shadow d-inline-block text-dark">No Staff</p> <br>
+            <button class="btn btn-primary"> <a href="addStaff" style="text-decoration: none; color: white;">Add New Staff</a></button>
+        </div>
+        <% } %>
+
+        <div class="row"> 
+            <div class="col-lg-8 col-sm-8 mb-4">
+                <div class="card mb-4">
+                    <% staff.forEach((user)=>{ %>
+                        <div class="card card-body box">
+                            <img class="img-fluid mb-3 w-100" src="../uploads/<%= user.photo %>" alt="">
+                            <h3 class="card-title mb-3"> <%=user.lastname%> </h3>
+                            <p> <%=user.department %> </p>
+                            <!-- <div class=""> -->
+                                <div class="d-flex">
+                                    <!-- <button class="btn btn-success" style="margin-right: 5px;"><a href="editStaff" class="text-light" target="_blank" style="text-decoration: none;">Edit Staff Detail</a></button>  -->
+                                    <button class="btn btn-primary" style="margin-right: 5px;"><a href="/viewStaff/<%=user._id%>" class="text-light" target="_blank" style="text-decoration: none;">View Staff</a></button>
+                                    <button class="btn btn-success" style="margin-right: 5px;"><a href="addStaff" class="text-light" target="_blank" style="text-decoration: none;">Add New Staff</a></button> 
+                                </div>
+                            <!-- </div> -->
+
+                            <div class="read-more pt-5">
+                                <form action="/<%=user.id%>?_method=DELETE" method="post" style="margin-top: 5px;">
+                                    <input class="footer-newsletter btn btn-danger " type="submit" value="Delete Staff">
+                                </form>
+                            </div>
+                        </div>
+                        <% }); %>
+                </div>
+            </div>
+
+            <!-- recent staff -->
+            <div class="col-lg-4 d-none d-sm-block shadow-sm p-5" data-mdb-animation-start="onHover" data-mdb-toggle="animation" data-mdb-animation="fade-in" >
+                <h4>Recent Staff</h4>
+
+                <% staff.forEach((user)=>{ %>      
+                    <div class="d-flex mb-3">
+                        <img class="recent w-25 img-fluid" src="../uploads/<%= user.photo %>" alt="">
+                        <h5><a href="viewStaff/<%=user._id%>" target="_blank" class="text-decoration-none text-dark"> <%=user.lastname%> </a></h5>
+                    </div> 
+                <% }); %>
+
+
+            </div>
+
+            
+        </div>
+    </div>
+</section>
+
+<%- include ("partials/footer") %>
