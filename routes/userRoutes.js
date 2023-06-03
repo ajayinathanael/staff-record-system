@@ -57,6 +57,43 @@ router.get('/addStaff',(req,res)=>{ // /addStaff/
 });
 
 
+router.get('/editStaff/:id', async(req,res)=>{ // /editStaff/:id
+    const requestedStaff = req.params.id;
+    let staff = await User.findOne({_id: requestedStaff});
+    res.render("myEdit", {staff:staff});
+    
+});
+
+router.put('/edit_staff/:id', upload.single('photo'), async(req,res,next)=>{
+
+    // console.log(req.body);
+    // console.log(req.params.id);
+    // console.log(req.file.filename);
+
+    let StaffEdit = ({
+        lastname: req.body.lastname,
+        firstname: req.body.firstname,
+        address: req.body.address,
+        department: req.body.department,
+        faculty: req.body.faculty,
+        dob: req.body.dob,
+        courses: req.body.courses,
+        photo: req.file.filename,
+        comment: req.body.comment,
+        facebook: req.body.facebook
+    });
+    // console.log(StaffEdit);
+
+    try{
+        const doc = await User.findByIdAndUpdate(req.params.id, StaffEdit);
+        res.redirect('/');
+    }
+    catch(err){
+        res.send(err);
+    } 
+});
+
+
 router.delete('/:id', async(req,res)=>{
     await User.findByIdAndDelete(req.params.id);
 
@@ -101,24 +138,5 @@ router.delete('/:id', async(req,res)=>{
     });
 });
 
-// router.get('/editStaff',(req,res)=>{ // /editStaff/:id
-//     res.render("myEdit");
-    
-// });
-
-// router.patch('/edit_staff/:id', async(req,res,next)=>{
-    //     const doc = await User.findByIdAndUpdate(req.params.id, req.body);
-    
-//     if(!doc){
-//         return next(err);
-//     }
-
-//     res.status(200).json({
-//         status: "success",
-//         data: {
-//             doc
-//         }
-//     }); 
-// });
 
 module.exports = router;

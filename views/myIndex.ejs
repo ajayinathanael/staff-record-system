@@ -30,13 +30,13 @@
                 <div class="card mb-4">
                     <% staff.forEach((user)=>{ %>
                         <div class="card card-body box">
-                            <img class="img-fluid mb-3 w-100" src="../uploads/<%= user.photo %>" alt="">
+                            <img class="img-fluid mb-3 w-100" src="../uploads/<%= user.photo %>" alt="No user image">
                             <h3 class="card-title mb-3"> <%=user.lastname%> </h3>
                             <p> <%=user.department %> </p>
                             <!-- <div class=""> -->
                                 <div class="d-flex">
-                                    <!-- <button class="btn btn-success" style="margin-right: 5px;"><a href="editStaff" class="text-light" target="_blank" style="text-decoration: none;">Edit Staff Detail</a></button>  -->
                                     <button class="btn btn-primary" style="margin-right: 5px;"><a href="/viewStaff/<%=user._id%>" class="text-light" target="_blank" style="text-decoration: none;">View Staff</a></button>
+                                    <button class="btn btn-secondary" style="margin-right: 5px;"><a href="editStaff/<%=user._id%>" class="text-light" target="_blank" style="text-decoration: none;">Edit Staff Detail</a></button> 
                                     <button class="btn btn-success" style="margin-right: 5px;"><a href="addStaff" class="text-light" target="_blank" style="text-decoration: none;">Add New Staff</a></button> 
                                 </div>
                             <!-- </div> -->
@@ -57,8 +57,8 @@
 
                 <% staff.forEach((user)=>{ %>      
                     <div class="d-flex mb-3">
-                        <img class="recent w-25 img-fluid" src="../uploads/<%= user.photo %>" alt="">
-                        <h5><a href="viewStaff/<%=user._id%>" target="_blank" class="text-decoration-none text-dark"> <%=user.lastname%> </a></h5>
+                        <img class="recent w-25 img-fluid" src="../uploads/<%= user.photo %>" alt="No user image">
+                        <h5><a href="viewStaff/<%=user._id%>" target="_blank" class="text-decoration-none text-dark"> <%=user.lastname%> <%=user.firstname%> </a></h5>
                     </div> 
                 <% }); %>
 
