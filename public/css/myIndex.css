@@ -5,3 +5,17 @@
 .box{
     margin-bottom: 30px;
 }
+
+.blog{
+    position: relative;
+    animation: mymove;
+    animation-duration: 5s;
+    animation-delay: 3s;
+    animation-fill-mode: backwards;
+}
+
+@keyframes mymove {
+
+    from {top: 0px;}
+  to {top: 500px; background-color: rgb(0, 255, 221);}
+}
